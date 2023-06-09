@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelExp</title>
+    <!-- styles -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="./style.css">
+    <!-- scripts -->
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script defer src="./script.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Campus TravelExp</h1>
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Campus</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="pills-clientes-tab" data-bs-toggle="pill" data-bs-target="#pills-clientes" type="button" role="tab" aria-controls="pills-clientes" aria-selected="true">Clientes</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="pills-rutas-tab" data-bs-toggle="pill" data-bs-target="#pills-rutas" type="button" role="tab" aria-controls="pills-rutas" aria-selected="false">Rutas</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="pills-tiquetes-tab" data-bs-toggle="pill" data-bs-target="#pills-tiquetes" type="button" role="tab" aria-controls="pills-tiquetes" aria-selected="false">Tiquetes</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="pills-fidelizacion-tab" data-bs-toggle="pill" data-bs-target="#pills-fidelizacion" type="button" role="tab" aria-controls="pills-fidelizacion" aria-selected="false">Fidelizacion</button>
+                        </li>
+                      </ul>
+                    </ul>
+
+              </div>
+            </div>
+          </nav>
+    </header>
+    <main>
+        <!-- Secciones -->
+        <div class="tab-content" id="pills-tabContent">
+            <!-- Clientes -->
+            <div class="tab-pane fade show active" id="pills-clientes" role="tabpanel" aria-labelledby="pills-clientes-tab">Clientes
+                <div class="container">
+                    <form class="row g-6" id="formAgregar">
+                        <!-- Nombre -->
+                        <div class="col-6">
+                            <label for="formNombre" class="form-label">Nombre(s)</label>
+                            <input type="text" class="form-control" id="formNombre" required>
+                        </div>
+                        <!-- Apellido -->
+                        <div class="col-6">
+                            <label for="formApellido" class="form-label">Apellido(s)</label>
+                            <input type="text" class="form-control" id="formApellido" required>
+                        </div>
+                        <!-- Numero Identificacion -->
+                        <div class="col-4">
+                            <label for="formIdentificacion" class="form-label">Numero de identificacion</label>
+                            <input type="number" class="form-control" id="formIdentificacion">
+                        </div>
+                        <!-- Telefono -->
+                        <div class="col-md-4">
+                            <label for="formTelefono" class="form-label">Telefono</label>
+                            <input type="tel" class="form-control" id="formTelefono" required>
+                        </div>
+                        <!-- Fecha de Nacimiento -->
+                        <div class="col-md-4">
+                            <label for="formNacimiento" class="form-label">Fecha de nacimiento</label>
+                            <input type="date" class="form-control" id="formNacimiento" required>
+                        </div>
+                        <!-- Correo Electronico -->
+                        <div class="col-md-7">
+                            <label for="formCorreo" class="form-label">Correo electronico</label>
+                            <input type="email" class="form-control" id="formCorreo" required>
+                        </div>
+                        <!-- Nacionalidad -->
+                        <div class="col-md-5">
+                            <label for="formNacionalidad" class="form-label">Nacionalidad</label>
+                            <input type="text" class="form-control" id="formNacionalidad" required>
+                        </div>
+                        <div class="col-md-3">
+                            <button class="btn btn-primary" type="submit" id="agregarCliente">Agregar</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="container">
+                    <input type="text" id="searchInput" class="form-control" placeholder="Buscar">
+                </div>
+                <div class="container">
+                    <table id="dataTable" class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Apellido</th>
+                                <th scope="col">N. Identificacion</th>
+                                <th scope="col">Fecha de Nacimiento</th>
+                                <th scope="col">Correo Electronico</th>
+                                <th scope="col">Nacionalidad</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- Rutas -->
+            <div class="tab-pane fade" id="pills-rutas" role="tabpanel" aria-labelledby="pills-rutas-tab">Rutas</div>
+            <!-- Tiquetes -->
+            <div class="tab-pane fade" id="pills-tiquetes" role="tabpanel" aria-labelledby="pills-tiquetes-tab">Tiquetes</div>
+            <!-- Fidelizacion -->
+            <div class="tab-pane fade" id="pills-fidelizacion" role="tabpanel" aria-labelledby="pills-fidelizacion-tab">Fidelizacion</div>
+          </div>
+    </main>
+</body>
+</html>
