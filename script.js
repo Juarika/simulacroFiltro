@@ -28,12 +28,41 @@ let usuarios = [
     nacionalidad: "Colombiano"
   }
 ];
+let rutas = [
+    {
+        id: 1,
+        nombre: "Buc-Bog",
+        precio: 100,
+        origen: "Bucaramanga",
+        destino: "Bogota",
+        puntos: 10
+    },
+    {
+        id: 2,
+        nombre: "Buc-Car",
+        precio: 150,
+        origen: "Bucaramanga",
+        destino: "Cartagena",
+        puntos: 15
+    },
+    {
+        id: 3,
+        nombre: "Bog-Car",
+        precio: 120,
+        origen: "Bogota",
+        destino: "Cartagena",
+        puntos: 12
+    }
+]
 const tableBody = document.getElementById('tableBody');
+const rowRuta = document.getElementById('rowRutas');
+
 
 // Funciones
 
 function init(){
     rellenarTabla(usuarios)
+    rellenarRutas(rutas)
 }
 
 function agregarCliente(e) {
@@ -70,6 +99,7 @@ function rellenarTabla(usuarios) {
         tableBody.appendChild(row)
         id++;
     }
+    
 }
 
 function eliminar(id) {
@@ -122,7 +152,40 @@ function editar(id) {
     eliminar(id);
 }
 
+function rellenarRutas(rutas) {
+    rowRuta.innerHTML = ''
+    let id = 1;
+    for (let ruta of rutas) {
+        const div = document.createElement('div');
+        div.classList = "card m-1";
+        div.id = 'ruta' + id;
+        div.innerHTML = `
+        <h5 class="card-title">${ruta.nombre}</h5>
+        <div class="card-body d-flex justify-content-between">
+            <table class="g-2">
+                <tr><th>ID</th><td class="text-center">${id}</td></tr>
+                <tr><th>Precio</th><td class="text-center">$${ruta.precio}</td></tr>
+                <tr><th>Ciudad Origen</th><td class="text-center">${ruta.origen}</td></tr>
+                <tr><th>Ciudad Destino</th><td class="text-center">${ruta.destino}</td></tr>
+                <tr><th>Puntos Fidelizacion</th><td class="text-center">${ruta.puntos}</td></tr>
+            </table>
+            <button type="button" class="btn btn-outline-danger" onclick="eliminarRuta(${id})">Eliminar</button>
+        </div>`
+        rowRuta.appendChild(div);
+        id++;
+    }
+}
+
+function eliminarRuta(id) {
+    let eliminado = document.getElementById('ruta'+id);
+    rowRuta.removeChild(eliminado);
+    rutas.splice(id, 1);
+}
+
 // Eventos
+init()
+    // Clientes
 document.getElementById('searchInput').addEventListener('input', buscar);
 document.getElementById('formAgregar').addEventListener('submit', agregarCliente);
-init()
+
+    // Rutas
