@@ -6,7 +6,7 @@ let usuarios = [
     identificacion: "2222222",
     telefono: 111111,
     correo: "juan@example.com",
-    nacimiento: "02/02/02",
+    nacimiento: "2002/02/02",
     nacionalidad: "Colombiano"
   },
   {
@@ -15,7 +15,7 @@ let usuarios = [
     identificacion: "2222222",
     telefono: 111111,
     correo: "juan@example.com",
-    nacimiento: "02/02/02",
+    nacimiento: "2002/02/02",
     nacionalidad: "Colombiano"
   },
   {
@@ -24,7 +24,7 @@ let usuarios = [
     identificacion: "2222222",
     telefono: 111111,
     correo: "juan@example.com",
-    nacimiento: "02/02/02",
+    nacimiento: "2002/02/02",
     nacionalidad: "Colombiano"
   }
 ];
@@ -47,9 +47,10 @@ function agregarCliente(e) {
         nacimiento: document.getElementById('formNacimiento').value,
         nacionalidad: document.getElementById('formNacionalidad').value
     }
-    usuarios.push(usuario)
-    console.log(usuarios)
-    rellenarTabla(usuarios)
+    usuarios.push(usuario);
+    console.log(usuarios);
+    rellenarTabla(usuarios);
+    document.getElementById('formAgregar').reset();
 }
 
 function rellenarTabla(usuarios) {
@@ -75,6 +76,7 @@ function eliminar(id) {
     let eliminado = document.getElementById('usuario'+id);
     tableBody.removeChild(eliminado);
     usuarios.splice(id, 1);
+    console.log(usuarios)
 }
 
 function buscar() {
@@ -99,15 +101,25 @@ function buscar() {
 }
 
 function editar(id) {
+    let form = document.getElementById('formAgregar')
+    let inputs = form.getElementsByTagName('input')
+    console.log(inputs)
+    let [nombre, apellido, telefono, identificacion, nacimiento, correo, nacionalidad] = inputs
+    if (nombre.value != '' || apellido.value !='' || telefono.value !='' || identificacion.value !='' || nacimiento.value !='' || correo.value !='' || nacionalidad.value !='' ) {
+        alert ('Esta editando otro usuario')
+        return
+    }
     let usuario = usuarios[id];
-    document.getElementById('formNombre').value = usuario.nombre;
-    document.getElementById('formApellido').value = usuario.apellido;
-    document.getElementById('formIdentificacion').value = usuario.identificacion;
-    document.getElementById('formNacimiento').value = usuario.nacimiento;
-    document.getElementById('formCorreo').value = usuario.correo;
-    document.getElementById('formNacionalidad').value = usuario.nacionalidad;
-    document.getElementById('agregarCliente').value = 'Editar';
-
+    let fecha_nac = usuario.nacimiento
+    let cambiada = fecha_nac.split("/").join("-");
+    nombre.value = usuario.nombre;
+    apellido.value = usuario.apellido;
+    telefono.value = usuario.telefono;
+    identificacion.value = usuario.identificacion;
+    nacimiento.value = cambiada;
+    correo.value = usuario.correo;
+    nacionalidad.value = usuario.nacionalidad;
+    eliminar(id);
 }
 
 // Eventos
