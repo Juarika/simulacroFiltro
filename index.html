@@ -89,7 +89,7 @@
                             <input type="text" class="form-control" id="formNacionalidad" required>
                         </div>
                         <div class="col-md-3">
-                            <button class="btn btn-primary" type="submit" id="  ">Agregar</button>
+                            <button class="btn btn-primary" type="submit">Agregar</button>
                         </div>
                     </form>
                 </div>
@@ -118,6 +118,28 @@
             <!-- Rutas -->
             <div class="tab-pane fade" id="pills-rutas" role="tabpanel" aria-labelledby="pills-rutas-tab">
                 <h2>Rutas</h2>
+                <div class="container">
+                    <form class="row g-6" id="formAgregarRuta">
+                        <!-- Precio -->
+                        <div class="col-4">
+                            <label for="formPrecio" class="form-label">Valor del Tiquete</label>
+                            <input type="text" class="form-control" id="formPrecio" required>
+                        </div>
+                        <!-- Origen -->
+                        <div class="col-4">
+                            <label for="formOrigen" class="form-label">Ciudad de Origen</label>
+                            <input type="text" class="form-control" id="formOrigen">
+                        </div>
+                        <!-- Destino -->
+                        <div class="col-md-4">
+                            <label for="formDestino" class="form-label">Ciudad de Destino</label>
+                            <input type="text" class="form-control" id="formDestino" required>
+                        </div>
+                        <div class="col-md-3">
+                            <button class="btn btn-primary" type="submit">Agregar</button>
+                        </div>
+                    </form>
+                </div>
                 <div class="container">
                     <div class="row" id="rowRutas">
                         

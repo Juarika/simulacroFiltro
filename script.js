@@ -56,7 +56,7 @@ let rutas = [
 ]
 const tableBody = document.getElementById('tableBody');
 const rowRuta = document.getElementById('rowRutas');
-
+let idRuta = 1;
 
 // Funciones
 
@@ -154,7 +154,7 @@ function editar(id) {
 
 function rellenarRutas(rutas) {
     rowRuta.innerHTML = ''
-    let id = 1;
+    id = 1;
     for (let ruta of rutas) {
         const div = document.createElement('div');
         div.classList = "card m-1";
@@ -164,7 +164,7 @@ function rellenarRutas(rutas) {
         <div class="card-body d-flex justify-content-between">
             <table class="g-2">
                 <tr><th>ID</th><td class="text-center">${id}</td></tr>
-                <tr><th>Precio</th><td class="text-center">$${ruta.precio}</td></tr>
+                <tr><th>Valor del Tiquete</th><td class="text-center">$${ruta.precio}</td></tr>
                 <tr><th>Ciudad Origen</th><td class="text-center">${ruta.origen}</td></tr>
                 <tr><th>Ciudad Destino</th><td class="text-center">${ruta.destino}</td></tr>
                 <tr><th>Puntos Fidelizacion</th><td class="text-center">${ruta.puntos}</td></tr>
@@ -174,6 +174,7 @@ function rellenarRutas(rutas) {
         rowRuta.appendChild(div);
         id++;
     }
+    idRuta = id; 
 }
 
 function eliminarRuta(id) {
@@ -182,10 +183,29 @@ function eliminarRuta(id) {
     rutas.splice(id, 1);
 }
 
+function agregarRuta(e) {
+    e.preventDefault();
+    let origen = document.getElementById('formOrigen').value;
+    let destino = document.getElementById('formDestino').value;
+    let precio = document.getElementById('formPrecio').value;
+    let ruta = {
+        id: idRuta,
+        nombre: origen.substr(0, 3) + '-' + destino.substr(0, 3),
+        precio: precio,
+        origen: origen,
+        destino: destino,
+        puntos: precio*0.1
+    }
+    rutas.push(ruta);
+    rellenarRutas(rutas);
+    document.getElementById('formAgregarRuta').reset();
+}
+
 // Eventos
 init()
     // Clientes
 document.getElementById('searchInput').addEventListener('input', buscar);
 document.getElementById('formAgregar').addEventListener('submit', agregarCliente);
+document.getElementById('formAgregarRuta').addEventListener('submit', agregarRuta);
 
     // Rutas
