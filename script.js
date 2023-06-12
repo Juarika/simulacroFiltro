@@ -1,59 +1,4 @@
 // Variables
-let usuarios = [
-    {
-    nombre: "Juan",
-    apellido: "Lozada",
-    identificacion: "2222222",
-    telefono: 111111,
-    correo: "juan@example.com",
-    nacimiento: "2002/02/02",
-    nacionalidad: "Colombiano"
-  },
-  {
-    nombre: "Erika",
-    apellido: "Perez",
-    identificacion: "2222222",
-    telefono: 111111,
-    correo: "juan@example.com",
-    nacimiento: "2002/02/02",
-    nacionalidad: "Colombiano"
-  },
-  {
-    nombre: "Mia",
-    apellido: "Lozada",
-    identificacion: "2222222",
-    telefono: 111111,
-    correo: "juan@example.com",
-    nacimiento: "2002/02/02",
-    nacionalidad: "Colombiano"
-  }
-];
-let rutas = [
-    {
-        id: 1,
-        nombre: "Buc-Bog",
-        precio: 100,
-        origen: "Bucaramanga",
-        destino: "Bogota",
-        puntos: 10
-    },
-    {
-        id: 2,
-        nombre: "Buc-Car",
-        precio: 150,
-        origen: "Bucaramanga",
-        destino: "Cartagena",
-        puntos: 15
-    },
-    {
-        id: 3,
-        nombre: "Bog-Car",
-        precio: 120,
-        origen: "Bogota",
-        destino: "Cartagena",
-        puntos: 12
-    }
-]
 const tableBody = document.getElementById('tableBody');
 const rowRuta = document.getElementById('rowRutas');
 let idRuta = 1;
@@ -63,6 +8,7 @@ let idRuta = 1;
 function init(){
     rellenarTabla(usuarios)
     rellenarRutas(rutas)
+    agregarSelects(usuarios, rutas)
 }
 
 function agregarCliente(e) {
@@ -201,11 +147,62 @@ function agregarRuta(e) {
     document.getElementById('formAgregarRuta').reset();
 }
 
+function agregarSelects(usuarios, rutas) {
+    usuarios.forEach(usuario => {
+        let opcion = document.createElement('option');
+        opcion.value = usuario.nombre + ' ' + usuario.apellido;
+        opcion.textContent = usuario.nombre + ' ' + usuario.apellido;
+        document.getElementById('selectUsuario').appendChild(opcion)
+    });
+    rutas.forEach(ruta => {
+        let opcion = document.createElement('option');
+        opcion.value = rutas.indexOf(ruta);
+        opcion.textContent = ruta.nombre;
+        document.getElementById('selectRuta').appendChild(opcion)
+    });
+}
+
+function tiquetes(e) {
+    e.preventDefault();
+    let div = document.getElementById('factura');
+    let opcionCliente = document.getElementById('selectUsuario').value;
+    let opcionRuta = document.getElementById('selectRuta').value;
+    let precio = rutas[opcionRuta].precio 
+    let precioTotal = (precio*1.16) + (precio*0.04)
+    div.className = 'show'
+    div.innerHTML = `
+    <div class="card card-body" style="width: 500px;">
+        <h3>Factura</h3>
+        <div class="position-absolute top-0 start-100 translate-middle">
+        <button type="button" class="btn-close" id="cerrar"></button>
+        </div>
+        <table class="g-2">
+            <tr><th>Cliente</th><td class="text-end">${opcionCliente}</td></tr>
+            <tr><th>Valor del Tiquete</th><td class="text-end">$${precioTotal}</td></tr>
+            <tr><th>Ciudad Origen</th><td class="text-end">${rutas[opcionRuta].origen}</td></tr>
+            <tr><th>Ciudad Destino</th><td class="text-end">${rutas[opcionRuta].destino}</td></tr>
+            <tr><th>Puntos Fidelizacion</th><td class="text-end">${rutas[opcionRuta].puntos}</td></tr>
+        </table>
+    </div>`
+    document.getElementById('formTiquetes').reset();
+    document.getElementById('cerrar').addEventListener('click', () => {
+        div.innerHTML = '';
+    });
+}
+    
+
 // Eventos
 init()
     // Clientes
 document.getElementById('searchInput').addEventListener('input', buscar);
 document.getElementById('formAgregar').addEventListener('submit', agregarCliente);
-document.getElementById('formAgregarRuta').addEventListener('submit', agregarRuta);
-
     // Rutas
+document.getElementById('formAgregarRuta').addEventListener('submit', agregarRuta);
+document.getElementById('formTiquetes').addEventListener('submit', tiquetes);
+
+// Se debe seleccionar el cliente de la lista de registrados.
+//  Se debe seleccionar la ruta de viaje: Nombre de Ruta
+//  Al valor de la ruta elegida, se le debe aplicar el impuesto del IVA 16% y el valor de la
+// tasa aeroportuaria del 4% sobre el valor antes del IVA.
+//  Cuando finalice el proceso de compra el sistema mostrará el resumen de la compra y
+// abonará los puntos para su fidelización.`
