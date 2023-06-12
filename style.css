@@ -1,5 +1,5 @@
 body {
-    height: 100vh;
+    height: 100%;
     background-image: url('https://images.pexels.com/photos/1465904/pexels-photo-1465904.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
     background-repeat: no-repeat;
     background-size: 100% 100%;
@@ -33,9 +33,16 @@ form > .aling-boton {
 
 }
 
-
 .nav-pills .nav-link.active,
 .show>.nav-pills .nav-link{
     background: #000000 !important;
     color: white !important;
+}
+
+.card {
+    background-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+input, select, table {
+    background-color: rgba(255, 255, 255, 0.5) !important;
 }
