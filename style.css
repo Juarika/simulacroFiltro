@@ -1,3 +1,41 @@
+body {
+    height: 100vh;
+    background-image: url('https://images.pexels.com/photos/1465904/pexels-photo-1465904.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+form > .aling-boton {
+    text-align: center;
+    width: 100%;
+}
+
+.aling-input {
+    text-align: center;
+}
+
 .card {
     max-width: 540px;
+}
+
+.container-collapse {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-link{
+    color: black !important
+
+}
+
+
+.nav-pills .nav-link.active,
+.show>.nav-pills .nav-link{
+    background: #000000 !important;
+    color: white !important;
 }

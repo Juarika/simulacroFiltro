@@ -6,7 +6,8 @@ let usuarios = [
         telefono: 111111,
         correo: "juan@example.com",
         nacimiento: "2002/02/02",
-        nacionalidad: "Colombiano"
+        nacionalidad: "Colombiano",
+        puntos: 100
       },
       {
         nombre: "Erika",
@@ -15,7 +16,8 @@ let usuarios = [
         telefono: 111111,
         correo: "juan@example.com",
         nacimiento: "2002/02/02",
-        nacionalidad: "Colombiano"
+        nacionalidad: "Colombiano",
+        puntos: 150
       },
       {
         nombre: "Mia",
@@ -24,7 +26,8 @@ let usuarios = [
         telefono: 111111,
         correo: "juan@example.com",
         nacimiento: "2002/02/02",
-        nacionalidad: "Colombiano"
+        nacionalidad: "Colombiano",
+        puntos: 120
       }
 ]
 
